@@ -1,0 +1,62 @@
+<div class="section-header">
+        <div class="section-icon">♻️</div>
+        <div>
+          <div class="section-title">Wax Sustainability Scorer</div>
+          <div class="section-sub">Evaluate wax eco-friendliness and get green alternatives</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="card">
+            <div class="card-title">Wax Parameters</div>
+            <div class="form-group">
+              <label>Source</label>
+              <select id="wax-source">
+                <option value="petroleum">Petroleum / Paraffin-based</option>
+                <option value="plant">Plant-based (Soy, Coconut, etc.)</option>
+                <option value="animal">Animal-based (Beeswax)</option>
+                <option value="synthetic">Synthetic (Polyurethane etc.)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Aromatic Hydrocarbons: <span id="wax-aromatic-val"
+                  style="color:var(--warn);font-weight:700">10%</span></label>
+              <input type="range" id="wax-aromatic" min="0" max="40" value="10" oninput="waxUpdate()">
+            </div>
+            <div class="form-group">
+              <label>Sulfur Content: <span id="wax-sulfur-val"
+                  style="color:var(--warn);font-weight:700">0.5%</span></label>
+              <input type="range" id="wax-sulfur" min="0" max="3" step="0.1" value="0.5" oninput="waxUpdate()">
+            </div>
+            <div class="form-group">
+              <label>Polycyclic Hydrocarbons: <span id="wax-poly-val"
+                  style="color:var(--warn);font-weight:700">1%</span></label>
+              <input type="range" id="wax-poly" min="0" max="7" step="0.1" value="1" oninput="waxUpdate()">
+            </div>
+            <div class="form-group">
+              <label>Biodegradable?</label>
+              <select id="wax-bio">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="partial">Partially</option>
+              </select>
+            </div>
+            <button class="btn" onclick="scoreWax()">📊 Calculate Score</button>
+          </div>
+        </div>
+
+        <div id="wax-result-wrap">
+          <div class="card flex-center" style="min-height:280px;flex-direction:column;gap:12px;color:var(--text-dim);">
+            <div style="font-size:3rem">🌱</div>
+            <p style="font-size:13px;text-align:center">Configure wax parameters<br>and click <strong
+                style="color:var(--text-muted)">Calculate Score</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wax comparison chart -->
+      <div class="card mt-4">
+        <div class="card-title">Wax Types — Sustainability Comparison</div>
+        <canvas id="wax-chart" height="100"></canvas>
+      </div>

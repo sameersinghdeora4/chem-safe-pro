@@ -1,0 +1,117 @@
+<div class="section-header">
+        <div class="section-icon">🧪</div>
+        <div>
+          <div class="section-title">Chemical Test Interpreter</div>
+          <div class="section-sub">Select a test type, input observed colour → know what compound is present</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Test Parameters</div>
+          <div class="form-group">
+            <label>Test Type</label>
+            <select id="test-type" onchange="updateColorOptions()">
+              <option value="">— Select a test —</option>
+              <option value="benedict">Benedict's Test (Sugar Detection)</option>
+              <option value="bromine">Bromine Water Test (Unsaturation)</option>
+              <option value="kmno4">KMnO₄ Test (Oxidation)</option>
+              <option value="dcpip">DCPIP Test (Vitamin C)</option>
+              <option value="iodoform">Iodoform Test (Alcohol)</option>
+              <option value="fecl3">FeCl₃ Test (Phenols / Benzoate)</option>
+              <option value="biuret">Biuret Test (Protein)</option>
+              <option value="sudan3">Sudan III Test (Lipids)</option>
+              <option value="emulsion">Oil Emulsion Test (Lipids)</option>
+              <option value="saponification">Saponification Test (Esters)</option>
+              <option value="ph">pH Paper Test (Acidity)</option>
+              <option value="esterification">Esterification Test (Acids)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Observed Colour Change</label>
+            <select id="color-obs">
+              <option value="">— First select a test —</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Sample Description (optional)</label>
+            <input type="text" id="sample-desc" placeholder="e.g. Sprite, Face Serum, Unknown sample…">
+          </div>
+          <button class="btn" onclick="interpretTest()">🔭 Interpret Result</button>
+        </div>
+
+        <div id="test-result-wrap">
+          <div class="card flex-center" style="min-height:280px;flex-direction:column;gap:12px;color:var(--text-dim);">
+            <div style="font-size:3rem">🔭</div>
+            <p style="font-size:13px;text-align:center">Select a test and colour observation<br>to interpret your lab
+              result</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick reference table -->
+      <div class="card mt-4">
+        <div class="card-title">Quick Test Reference</div>
+        <div class="data-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Reagent</th>
+                <th>Positive Colour</th>
+                <th>Detects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Benedict's</td>
+                <td>Benedict's solution</td>
+                <td><span class="color-swatch" style="background:#b35c00"></span>Brick red</td>
+                <td>Reducing sugars (glucose, lactose)</td>
+              </tr>
+              <tr>
+                <td>Bromine Water</td>
+                <td>Br₂ (aq)</td>
+                <td><span class="color-swatch" style="background:#f5f0c0"></span>Decolourises</td>
+                <td>Unsaturated compounds</td>
+              </tr>
+              <tr>
+                <td>KMnO₄</td>
+                <td>Dilute KMnO₄</td>
+                <td><span class="color-swatch" style="background:#e0d0f0"></span>Purple fades</td>
+                <td>Unsaturated / reducing agents</td>
+              </tr>
+              <tr>
+                <td>DCPIP</td>
+                <td>DCPIP solution</td>
+                <td><span class="color-swatch" style="background:#f0f8ff"></span>Blue → Colourless</td>
+                <td>Vitamin C (Ascorbic acid)</td>
+              </tr>
+              <tr>
+                <td>Iodoform</td>
+                <td>I₂ + NaOH, warm</td>
+                <td><span class="color-swatch" style="background:#ffe033"></span>Yellow ppt</td>
+                <td>Ethanol / Methyl ketones</td>
+              </tr>
+              <tr>
+                <td>FeCl₃</td>
+                <td>5% FeCl₃</td>
+                <td><span class="color-swatch" style="background:#c46a00"></span>Buff/red ppt</td>
+                <td>Benzoate / Phenols</td>
+              </tr>
+              <tr>
+                <td>Biuret</td>
+                <td>NaOH + CuSO₄</td>
+                <td><span class="color-swatch" style="background:#7b26c9"></span>Violet/Purple</td>
+                <td>Proteins (peptide bonds)</td>
+              </tr>
+              <tr>
+                <td>Sudan III</td>
+                <td>Sudan III dye</td>
+                <td><span class="color-swatch" style="background:#c94b00"></span>Red/orange ring</td>
+                <td>Lipids / Fats</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

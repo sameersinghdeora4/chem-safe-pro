@@ -1,0 +1,48 @@
+<div class="section-header">
+        <div class="section-icon">🔄</div>
+        <div>
+          <div class="section-title">Reaction Simulator</div>
+          <div class="section-sub">Select a reaction to see its balanced equation, type, and explanation</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="card">
+            <div class="card-title">Select a Reaction</div>
+            <div class="form-group">
+              <label>Reaction</label>
+              <select id="rxn-select" onchange="showReaction()">
+                <option value="">— Choose a reaction —</option>
+              </select>
+            </div>
+            <div class="card-title" style="margin-top:20px">Quick Select</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px" id="rxn-quick-btns"></div>
+          </div>
+
+          <div class="card mt-4">
+            <div class="card-title">Reaction Info</div>
+            <div id="rxn-info">
+              <div class="click-prompt">
+                <div class="cp-icon">🔄</div>
+                <p>Select a reaction above to see the<br>balanced equation and explanation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Equation Visualizer</div>
+          <div id="rxn-display">
+            <div class="click-prompt" style="min-height:200px">
+              <div class="cp-icon">⚗️</div>
+              <p>The balanced equation will be<br>animated here when you select a reaction</p>
+            </div>
+          </div>
+
+          <div class="dyk-card mt-4" id="rxn-dyk" style="display:none">
+            <div class="dyk-label">💡 Did You Know?</div>
+            <p class="dyk-text" id="rxn-fact"></p>
+          </div>
+        </div>
+      </div>

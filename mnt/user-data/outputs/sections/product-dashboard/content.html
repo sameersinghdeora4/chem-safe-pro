@@ -1,0 +1,81 @@
+<div class="section-header">
+        <div class="section-icon">📊</div>
+        <div>
+          <div class="section-title">Everyday Product Dashboard</div>
+          <div class="section-sub">Complete database with pH, ingredients, and safety ratings</div>
+        </div>
+      </div>
+
+      <!-- Summary stats -->
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="card" style="text-align:center;padding:18px">
+          <div style="font-size:1.8rem;font-family:var(--font-head);color:var(--danger);font-weight:900">4</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">High Risk
+          </div>
+        </div>
+        <div class="card" style="text-align:center;padding:18px">
+          <div style="font-size:1.8rem;font-family:var(--font-head);color:var(--warn);font-weight:900">3</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Medium Risk
+          </div>
+        </div>
+        <div class="card" style="text-align:center;padding:18px">
+          <div style="font-size:1.8rem;font-family:var(--font-head);color:var(--safe);font-weight:900">2</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Low Risk
+          </div>
+        </div>
+        <div class="card" style="text-align:center;padding:18px">
+          <div style="font-size:1.8rem;font-family:var(--font-head);color:var(--neon2);font-weight:900">9</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Products
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-title">pH Distribution</div>
+          <canvas id="dashboard-ph-chart" height="140"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-title">Risk Level Distribution</div>
+          <canvas id="dashboard-risk-chart" height="140"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Product Database</div>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <div class="search-wrap" style="flex:1;min-width:200px;margin-bottom:0">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="dash-search" placeholder="Search products…" oninput="filterDash()">
+          </div>
+          <select id="dash-filter-risk" onchange="filterDash()" style="width:160px">
+            <option value="">All Risk Levels</option>
+            <option value="Low">Low Risk</option>
+            <option value="Medium">Medium Risk</option>
+            <option value="High">High Risk</option>
+          </select>
+          <select id="dash-filter-cat" onchange="filterDash()" style="width:160px">
+            <option value="">All Categories</option>
+            <option value="Soft Drink">Soft Drinks</option>
+            <option value="Cosmetic">Cosmetics</option>
+            <option value="Hair Care">Hair Care</option>
+            <option value="Beverage">Beverages</option>
+            <option value="Industrial">Industrial</option>
+          </select>
+        </div>
+        <div class="data-table-wrap">
+          <table id="dash-table">
+            <thead>
+              <tr>
+                <th onclick="sortDash('name')">Product ↕</th>
+                <th onclick="sortDash('category')">Category ↕</th>
+                <th onclick="sortDash('ph')">pH ↕</th>
+                <th>Key Ingredients</th>
+                <th onclick="sortDash('risk')">Risk ↕</th>
+                <th onclick="sortDash('score')">Safety Score ↕</th>
+              </tr>
+            </thead>
+            <tbody id="dash-tbody"></tbody>
+          </table>
+        </div>
+      </div>

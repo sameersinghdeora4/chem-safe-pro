@@ -1,0 +1,103 @@
+<div class="section-header">
+        <div class="section-icon">💧</div>
+        <div>
+          <div class="section-title">pH Health Risk Calculator</div>
+          <div class="section-sub">Calculate enamel damage risk from acidic drinks and products</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="card">
+            <div class="card-title">Input pH Value</div>
+            <div class="form-group">
+              <label>pH Level: <span id="ph-range-val" style="color:var(--neon);font-weight:700">3.5</span></label>
+              <input type="range" id="ph-range" min="0" max="14" step="0.1" value="3.5"
+                oninput="updatePHMeter(this.value)">
+              <div
+                style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim);margin-top:4px">
+                <span>0 — Acidic</span><span>7 — Neutral</span><span>14 — Alkaline</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Or enter exact pH</label>
+              <input type="number" id="ph-input" min="0" max="14" step="0.1" value="3.5" placeholder="Enter pH (0–14)"
+                oninput="syncPHInput(this.value)">
+            </div>
+            <div class="form-group">
+              <label>Daily servings per day</label>
+              <input type="number" id="ph-servings" min="1" max="10" value="2" placeholder="Number of drinks per day">
+            </div>
+            <button class="btn" onclick="calcPHRisk()">⚡ Calculate Risk</button>
+          </div>
+
+          <!-- Quick presets -->
+          <div class="card mt-4">
+            <div class="card-title">Common Products</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <button class="btn btn-outline" style="font-size:12px;padding:8px" onclick="setPH(3.1)">🥤 Diet Coke —
+                3.1</button>
+              <button class="btn btn-outline" style="font-size:12px;padding:8px" onclick="setPH(3.24)">🟢 Sprite —
+                3.24</button>
+              <button class="btn btn-outline" style="font-size:12px;padding:8px" onclick="setPH(3.0)">⚡ Monster —
+                3.0</button>
+              <button class="btn btn-outline" style="font-size:12px;padding:8px" onclick="setPH(4.3)">🥛 Amul Lassi —
+                4.3</button>
+              <button class="btn btn-outline" style="font-size:12px;padding:8px" onclick="setPH(5.5)">💆 Niacinamide —
+                5.5</button>
+              <button class="btn btn-outline" style="font-size:12px;padding:8px" onclick="setPH(7.0)">💧 Pure Water —
+                7.0</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Danger Meter</div>
+          <div id="ph-gauge-container">
+            <div class="ph-gauge-wrap">
+              <svg id="ph-arc-svg" width="100%" viewBox="0 0 300 170" class="ph-arc">
+                <!-- colour arc segments -->
+                <defs>
+                  <linearGradient id="arc-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#c62828" />
+                    <stop offset="28%" style="stop-color:#e53935" />
+                    <stop offset="50%" style="stop-color:#ffa500" />
+                    <stop offset="72%" style="stop-color:#66bb6a" />
+                    <stop offset="100%" style="stop-color:#0077aa" />
+                  </linearGradient>
+                </defs>
+                <path d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="20"
+                  stroke-linecap="round" />
+                <path id="ph-arc-fill" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="url(#arc-grad)"
+                  stroke-width="20" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="200"
+                  style="transition:stroke-dashoffset 0.8s ease" />
+                <!-- needle -->
+                <g id="ph-needle"
+                  style="transform-origin:150px 150px;transform:rotate(-90deg);transition:transform 0.8s ease">
+                  <line x1="150" y1="150" x2="150" y2="50" stroke="var(--neon)" stroke-width="2.5"
+                    stroke-linecap="round" />
+                  <circle cx="150" cy="150" r="7" fill="var(--neon)" style="box-shadow:var(--glow)" />
+                  <circle cx="150" cy="150" r="4" fill="#030b14" />
+                </g>
+                <!-- pH labels -->
+                <text x="22" y="168" fill="#ff4560" font-size="11" font-family="Orbitron,monospace">0</text>
+                <text x="140" y="32" fill="#ffa500" font-size="11" font-family="Orbitron,monospace">7</text>
+                <text x="270" y="168" fill="#0077aa" font-size="11" font-family="Orbitron,monospace">14</text>
+              </svg>
+            </div>
+            <div class="ph-info-box">
+              <div class="ph-big-val" id="ph-display">3.5</div>
+              <div class="ph-verdict" id="ph-verdict" style="color:var(--danger)">HIGHLY DANGEROUS</div>
+              <hr class="thin">
+              <div id="ph-detail"
+                style="font-size:13px;color:var(--text-muted);line-height:1.7;text-align:left;margin-top:8px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Risk over time chart -->
+      <div class="card mt-4" id="ph-chart-card">
+        <div class="card-title">Enamel Erosion Risk Over Time</div>
+        <canvas id="ph-chart" height="80"></canvas>
+      </div>

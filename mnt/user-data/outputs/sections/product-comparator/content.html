@@ -1,0 +1,32 @@
+<div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <div>
+          <div class="section-title">Product Comparator</div>
+          <div class="section-sub">Side-by-side comparison — see which product is safer</div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-title">Select Products to Compare</div>
+        <div class="grid-2">
+          <div class="form-group" style="margin-bottom:0">
+            <label>Product A</label>
+            <select id="comp-a" onchange="runComparison()">
+              <option value="">— Select product —</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label>Product B</label>
+            <select id="comp-b" onchange="runComparison()">
+              <option value="">— Select product —</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="compare-result">
+        <div class="card flex-center" style="min-height:200px;flex-direction:column;gap:12px;color:var(--text-dim);">
+          <div style="font-size:3rem">⚖️</div>
+          <p style="font-size:13px">Select two products above to compare them</p>
+        </div>
+      </div>
